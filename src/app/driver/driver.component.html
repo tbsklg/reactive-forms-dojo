@@ -1,7 +1,12 @@
 <form [formGroup]="driverForm" (ngSubmit)='onSubmit()'>
-    <input type='text' name="" [formControl]="name">
-    <input type='text' name="" [formControl]="vorname">
-    
-    <button type='submit'>Speichern</button>
-</form>
+    <input type='text' id="name" [formControl]="name">
+    <input type='text' id="vorname" [formControl]="vorname">
 
+    <div formGroupName="address">
+        <input type='text' id="street" formControlName="street">
+        <input type='text' id="city" formControlName="city">
+    </div>
+
+    <button type='submit' [disabled]='!driverForm.dirty'>Speichern</button>
+    <button type='button' (click)='resetForm()'>Reset</button>
+</form>
