@@ -2,11 +2,16 @@
     <input type='text' id="name" [formControl]="name">
     <input type='text' id="vorname" [formControl]="vorname">
 
-    <div formGroupName="address">
-        <input type='text' id="street" formControlName="street">
-        <input type='text' id="city" formControlName="city">
+    <div formArrayName="addresses" *ngFor="let item of addresses.controls; let i = index;">
+        <div [formGroupName]="i">
+            <input type="checkbox" id="i" formControlName=delete>
+            <input type="text" formControlName=street>
+            <input type="text" formControlName=city>
+        </div>
     </div>
 
     <button type='submit' [disabled]='!driverForm.dirty'>Speichern</button>
     <button type='button' (click)='resetForm()'>Reset</button>
+    <button type='button' (click)='addAddress()'>hinzufügen</button>
+    <button type='button' (click)='deleteAddress()'>löschen</button>
 </form>
